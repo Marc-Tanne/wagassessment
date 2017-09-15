@@ -19,7 +19,7 @@ assert(function_exists("dates_when_user_was_in_top_n"));
 for ($i = 0; $i < 1000; $i++) {
     $payload = ["s" => "string", "b" => true, "i" => $i, "f" => $i / 10];
     $request = make_request($payload, API_SECRET);
-
+    
     assert(parse_request($request, API_SECRET) === $payload); // original
     assert(parse_request(strrev($request), API_SECRET) === false); // reverse
     assert(parse_request(substr($request, 1, -1), API_SECRET) === false); // shortened
@@ -80,6 +80,7 @@ assert($correct == $actual);
 
 $correct = [];
 $actual  = dates_when_user_was_in_top_n($pdo, 3, 2);
+var_dump($actual);
 assert($correct == $actual);
 
 $correct = ["2017-09-02"];
